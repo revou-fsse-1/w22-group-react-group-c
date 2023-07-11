@@ -31,15 +31,19 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
-    await axios.post(
-      "https://w17-our-backend-group-c-production.up.railway.app/auth/register/user",
-      {
-        email: data.email,
-        password: data.password,
-      }
-    );
-    console.log(data);
-    router.push("/auth/login");
+    try {
+      await axios.post(
+        "https://wheremypets-backend-production.up.railway.app/auth/register/user",
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+      console.log(data);
+      router.push("/auth/login");
+    } catch (error) {
+      alert("Duplicate email");
+    }
   };
 
   return (

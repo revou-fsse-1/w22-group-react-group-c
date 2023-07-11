@@ -31,16 +31,21 @@ export default function Login() {
 
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
-    const response = await axios.post(
-      "https://w17-our-backend-group-c-production.up.railway.app/auth/login/user",
-      {
-        email: data.email,
-        password: data.password,
-      }
-    );
-    window.localStorage.setItem("token", response.data.access_token);
-    console.log(data);
-    router.push("/");
+
+    try {
+      const response = await axios.post(
+        "https://wheremypets-backend-production.up.railway.app/auth/login/user",
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+      window.localStorage.setItem("token", response.data.access_token);
+      console.log(data);
+      router.push("/");
+    } catch (error) {
+      alert("email or password not found!");
+    }
   };
   return (
     <div>
