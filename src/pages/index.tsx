@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import Product from "@/components/Product/ProductCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Layout from "@/layout/Layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,11 +51,13 @@ export default function Home({ initialData }: HomeProps) {
   };
 
   return (
-    <main
-      className={`flex flex-col items-centerjustify-center px-6 py-5 ${inter.className}`}
-    >
-      <Product data={productData} error={error} isLoading={isLoading} />
-    </main>
+    <Layout>
+      <main
+        className={`flex flex-col items-centerjustify-center px-6 py-5 ${inter.className}`}
+      >
+        <Product data={productData} error={error} isLoading={isLoading} />
+      </main>
+    </Layout>
   );
 }
 
