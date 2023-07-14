@@ -52,7 +52,7 @@ export default function Home({ initialData }: HomeProps) {
   return (
     <Layout>
       <main
-        className={`flex flex-col items-centerjustify-center px-6 py-5 ${inter.className}`}
+        className={`flex flex-col items-center justify-center px-6 py-5 ${inter.className}`}
       >
         <h1>hai</h1>
       </main>
