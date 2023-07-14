@@ -36,9 +36,7 @@ export default function Home({ initialData }: HomeProps) {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(
-        "https://w17-our-backend-group-c-production.up.railway.app/products/all"
-      );
+      const response = await axios.get("");
       const data = response.data;
 
       setProductData(data);
@@ -55,7 +53,7 @@ export default function Home({ initialData }: HomeProps) {
       <main
         className={`flex flex-col items-centerjustify-center px-6 py-5 ${inter.className}`}
       >
-        <Product data={productData} error={error} isLoading={isLoading} />
+        <h1>hai</h1>
       </main>
     </Layout>
   );
@@ -63,9 +61,7 @@ export default function Home({ initialData }: HomeProps) {
 
 export async function getStaticProps() {
   try {
-    const response = await axios.get(
-      "https://w17-our-backend-group-c-production.up.railway.app/products/all"
-    );
+    const response = await axios.get("");
     const data = response.data;
 
     return {
