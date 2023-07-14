@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
-import Product from "@/components/Product/ProductCard";
+import { Nunito_Sans } from "next/font/google";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "@/layout/Layout";
+import dynamic from "next/dynamic";
+// const Layout = dynamic(() => import("../layout/Layout"), { ssr: false });
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Nunito_Sans({ subsets: ["latin"] });
 
 interface ProductData {
   // Define the properties of the Product type
@@ -26,27 +27,27 @@ export default function Home({ initialData }: HomeProps) {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (!initialData) {
-      fetchData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!initialData) {
+  //     fetchData();
+  //   }
+  // }, []);
 
-  const fetchData = async () => {
-    setIsLoading(true);
+  // const fetchData = async () => {
+  //   setIsLoading(true);
 
-    try {
-      const response = await axios.get("");
-      const data = response.data;
+  //   try {
+  //     const response = await axios.get("");
+  //     const data = response.data;
 
-      setProductData(data);
-      setError(false);
-    } catch (error) {
-      setError(true);
-    }
+  //     setProductData(data);
+  //     setError(false);
+  //   } catch (error) {
+  //     setError(true);
+  //   }
 
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   return (
     <Layout>
@@ -59,23 +60,23 @@ export default function Home({ initialData }: HomeProps) {
   );
 }
 
-export async function getStaticProps() {
-  try {
-    const response = await axios.get("");
-    const data = response.data;
+// export async function getStaticProps() {
+//   try {
+//     const response = await axios.get("");
+//     const data = response.data;
 
-    return {
-      props: {
-        initialData: data,
-      },
-      revalidate: 10,
-    };
-  } catch (error) {
-    return {
-      props: {
-        initialData: null,
-      },
-      revalidate: 10,
-    };
-  }
-}
+//     return {
+//       props: {
+//         initialData: data,
+//       },
+//       revalidate: 10,
+//     };
+//   } catch (error) {
+//     return {
+//       props: {
+//         initialData: null,
+//       },
+//       revalidate: 10,
+//     };
+//   }
+// }
