@@ -1,16 +1,40 @@
 import axios from "axios";
 import React, { useState } from "react";
-
-export default function testing() {
+interface Found {
+  title: string;
+  name: string;
+  description: string;
+  image: string;
+  location: string;
+  locationDetail: string;
+  species: string;
+  contact: string;
+  userId: string;
+}
+export default function Testing() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [location, setLocation] = useState("");
+  const [locationDetail, setLocationDetail] = useState("");
+  const [species, setSpecies] = useState("");
+  const [contact, setContact] = useState("");
   const [userId, setUserId] = useState("");
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const token = await axios.post("");
-    console.log(title, name, description, image, userId);
+    const response = await axios.post("http://localhost:4000/found", {
+      title: title,
+      name: name,
+      description: description,
+      image: image,
+      location: location,
+      locationDetail: locationDetail,
+      species: species,
+      contact: contact,
+      userId: userId,
+    });
+    console.log(response);
   };
   return (
     <div>
@@ -44,6 +68,34 @@ export default function testing() {
           onChange={(event) => setImage(event?.target.value)}
         />
         {/* <input type="file" name="" id="" /> */}
+        <label htmlFor="location">location</label>
+        <input
+          type="text"
+          id="location"
+          value={location}
+          onChange={(event) => setLocation(event?.target.value)}
+        />
+        <label htmlFor="locationDetail">location detail</label>
+        <input
+          type="text"
+          id="locationDetail"
+          value={locationDetail}
+          onChange={(event) => setLocationDetail(event?.target.value)}
+        />
+        <label htmlFor="species">species</label>
+        <input
+          type="text"
+          id="species"
+          value={species}
+          onChange={(event) => setSpecies(event?.target.value)}
+        />
+        <label htmlFor="contact">contact</label>
+        <input
+          type="text"
+          id="contact"
+          value={contact}
+          onChange={(event) => setContact(event?.target.value)}
+        />
         <label htmlFor="userId">userId</label>
         <input
           type="text"
