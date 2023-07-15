@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="bg-[#FFD6A5] px-4 py-2 shadow-lg">
+      <nav className="bg-[#FFD6A5] w-full z-50 fixed px-4 py-2 drop-shadow-xl shadow-md shadow-[#1c1c1c]">
         <div className="flex justify-between items-center">
           <div className="flex items-center text-white">
             <div className="relative">

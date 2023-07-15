@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Layout from "@/layout/Layout";
 import dynamic from "next/dynamic";
 import Carousel from "@/components/Homepage/Carousel";
+import MiddleNav from "@/components/Homepage/MiddleNav";
 
 // const Layout = dynamic(() => import("../layout/Layout"), { ssr: false });
 
@@ -57,6 +58,7 @@ export default function Home({ initialData }: HomeProps) {
         className={`flex flex-col items-center justify-center px-6 py-5 ${inter.className}`}
       >
         <Carousel />
+        <MiddleNav />
       </main>
     </Layout>
   );
