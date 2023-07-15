@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "@/layout/Layout";
 import dynamic from "next/dynamic";
+import Carousel from "@/components/Homepage/Carousel";
+
 // const Layout = dynamic(() => import("../layout/Layout"), { ssr: false });
 
 const inter = Nunito_Sans({ subsets: ["latin"] });
@@ -54,7 +56,7 @@ export default function Home({ initialData }: HomeProps) {
       <main
         className={`flex flex-col items-center justify-center px-6 py-5 ${inter.className}`}
       >
-        <h1>hai</h1>
+        <Carousel />
       </main>
     </Layout>
   );
