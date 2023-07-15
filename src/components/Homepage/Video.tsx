@@ -16,6 +16,9 @@ export default function Video() {
             loop={true}
             playing={true}
             url="https://youtu.be/D-Ts7JfYVoU"
+            width="80%"
+            height="80%"
+            className="react-player"
           />
         </div>
       )}
