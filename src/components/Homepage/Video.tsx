@@ -18,7 +18,7 @@ export default function Video() {
             url="https://youtu.be/D-Ts7JfYVoU"
             width="80%"
             height="80%"
-            className="react-player"
+            className="absolute top-[40rem] md:top-[51rem] left-11 md:left-28"
           />
         </div>
       )}
