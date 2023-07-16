@@ -117,6 +117,7 @@ export default function FormFoundPet() {
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
+                <h2 className="font-semibold text-lg">Title </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -139,6 +140,7 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Description </h2>
                 <div className="relative mt-2 w-full">
                   <textarea
                     rows={10}
@@ -162,6 +164,7 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Name</h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -184,6 +187,7 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Location </h2>
                 <div className="relative mt-2 w-full">
                   <select
                     id="location"
@@ -249,20 +253,22 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Location Detail{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <textarea
+                    rows={6}
                     id="locationDetail"
                     {...register("locationDetail")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                    placeholder="Enter Location Detail"
+                  ></textarea>
                   <label
                     htmlFor="locationDetail"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                   >
                     {" "}
-                    Enter Location Detail
                   </label>
                 </div>
               </div>
@@ -273,6 +279,9 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Species{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -295,6 +304,9 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Contact{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -317,6 +329,9 @@ export default function FormFoundPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Image{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="file"
@@ -339,7 +354,7 @@ export default function FormFoundPet() {
                 <p className="text-red-500 text-sm">{errors.image.message}</p>
               )}
 
-              <div className="z-50 text-center mt-3">
+              <div className="z-50 text-center mt-5">
                 <button
                   className="rounded-lg z-30 bg-blue-600 hover:bg-blue-500 px-32 py-4 font-bold text-lg text-white"
                   type="submit"
