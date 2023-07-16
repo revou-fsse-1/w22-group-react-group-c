@@ -112,7 +112,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="description"
-                    {...register("description")} // Register password input
+                    {...register("description")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -136,7 +136,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="name"
-                    {...register("name")} // Register password input
+                    {...register("name")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -158,7 +158,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="location"
-                    {...register("location")} // Register password input
+                    {...register("location")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -182,7 +182,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="locationDetail"
-                    {...register("locationDetail")} // Register password input
+                    {...register("locationDetail")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -206,7 +206,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="species"
-                    {...register("species")} // Register password input
+                    {...register("species")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -228,7 +228,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="contact"
-                    {...register("contact")} // Register password input
+                    {...register("contact")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -250,7 +250,7 @@ export default function FormFoundPet() {
                   <input
                     type="text"
                     id="image"
-                    {...register("image")} // Register password input
+                    {...register("image")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
