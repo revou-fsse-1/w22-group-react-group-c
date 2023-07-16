@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import jwt_decode from "jwt-decode";
 
 interface FormProps {
   title: string;
@@ -44,17 +45,30 @@ export default function FormFoundPet() {
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
     try {
-      await axios.post("", {
-        title: data.title,
-        description: data.description,
-        name: data.name,
-        location: data.location,
-        locationDetail: data.locationDetail,
-        species: data.species,
-        contact: data.contact,
-        image: data.image,
-      });
-      console.log(data);
+      const token = window.localStorage.getItem("token");
+      const decodedToken: { userId: string } = jwt_decode(token as string);
+      const userId = decodedToken.userId;
+      await axios.post(
+        "https://wheremypets-backend-production.up.railway.app/found",
+        {
+          title: data.title,
+          description: data.description,
+          name: data.name,
+          location: data.location,
+          locationDetail: data.locationDetail,
+          species: data.species,
+          contact: data.contact,
+          image: data.image,
+          userId: userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(data);
+      // console.log(decodedToken);
       router.push("/auth/login");
     } catch (error) {
       console.log(error);
