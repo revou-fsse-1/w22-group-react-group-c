@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,9 @@ import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
+import ImageKit from "imagekit";
+import { ReadStream } from "fs";
+import "dotenv/config";
 
 interface FormProps {
   title: string;
@@ -19,7 +22,26 @@ interface FormProps {
 }
 
 export default function FormFoundPet() {
+  const [selectedImage, setSelectedImage] = useState<any>(null);
   const router = useRouter();
+  const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
+  const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
+  const urlEndpointEnv = process.env.NEXT_PUBLIC_URL_ENDPOINT as string;
+  console.log(publicKeyEnv);
+  console.log(privateKeyEnv);
+  console.log(urlEndpointEnv);
+
+  const imagekit = new ImageKit({
+    publicKey: publicKeyEnv,
+    privateKey: privateKeyEnv,
+    urlEndpoint: urlEndpointEnv,
+  });
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setSelectedImage(file);
+  };
+  console.log(selectedImage);
 
   const schema = yup
     .object({
@@ -48,6 +70,17 @@ export default function FormFoundPet() {
       const token = window.localStorage.getItem("token");
       const decodedToken: { userId: string } = jwt_decode(token as string);
       const userId = decodedToken.userId;
+
+      const originalFilename = selectedImage?.name || "image.jpg"; // Use the original filename if available, otherwise use a fallback
+
+      // Upload the image to ImageKit
+      const response = await imagekit.upload({
+        file: selectedImage, // Use the selected image file
+        fileName: originalFilename,
+      });
+
+      const imageUrl = response.url; // Get the uploaded image URL
+
       await axios.post(
         "https://wheremypets-backend-production.up.railway.app/found",
         {
@@ -58,7 +91,7 @@ export default function FormFoundPet() {
           locationDetail: data.locationDetail,
           species: data.species,
           contact: data.contact,
-          image: data.image,
+          image: imageUrl,
           userId: userId,
         },
         {
@@ -69,6 +102,7 @@ export default function FormFoundPet() {
       );
       // console.log(data);
       // console.log(decodedToken);
+      console.log(imageUrl);
       router.push("/auth/login");
     } catch (error) {
       console.log(error);
@@ -109,19 +143,18 @@ export default function FormFoundPet() {
 
               <div>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <textarea
+                    rows={10}
                     id="description"
                     {...register("description")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                    placeholder="Enter Description"
+                  ></textarea>
                   <label
                     htmlFor="description"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                   >
                     {" "}
-                    Enter Description
                   </label>
                 </div>
               </div>
@@ -155,13 +188,54 @@ export default function FormFoundPet() {
 
               <div>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <select
                     id="location"
                     {...register("location")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                  >
+                    <option value="">Select a Province</option>
+
+                    <option value="Aceh">Aceh</option>
+                    <option value="Bali">Bali</option>
+                    <option value="Bangka Belitung">Bangka Belitung</option>
+                    <option value="Banten">Banten</option>
+                    <option value="Bengkulu">Bengkulu</option>
+                    <option value="DKI Jakarta">Jakarta</option>
+                    <option value="Jawa Tengah">Jawa Tengah</option>
+                    <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                    <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                    <option value="Jawa Timur">Jawa Timur</option>
+                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                    <option value="Nusa Tenggara Timur">
+                      Nusa Tenggara Timur
+                    </option>
+                    <option value="Gorontalo">Gorontalo</option>
+                    <option value="Jambi">Jambi</option>
+                    <option value="Lampung">Lampung</option>
+                    <option value="Maluku">Maluku</option>
+                    <option value="Kalimantan Utara">Kalimantan Utara</option>
+                    <option value="Maluku Utara">Maluku Utara</option>
+                    <option value="Sulawesi Utara">Sulawesi Utara</option>
+                    <option value="Sumatera Utara">Sumatera Utara</option>
+                    <option value="Papua">Papua</option>
+                    <option value="Riau">Riau</option>
+                    <option value="Kepulauan Riau">Kepulauan Riau</option>
+                    <option value="Kalimantan Selatan">
+                      Kalimantan Selatan
+                    </option>
+                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                    <option value="Sumatera Selatan">Sumatera Selatan</option>
+                    <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                    <option value="Jawa Barat">Jawa Barat</option>
+                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                    <option value="Nusa Tenggara Barat">
+                      Nusa Tenggara Barat
+                    </option>
+                    <option value="Papua Barat">Papua Barat</option>
+                    <option value="Sulawesi Barat">Sulawesi Barat</option>
+                    <option value="Sumatera Barat">Sumatera Barat</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                  </select>
                   <label
                     htmlFor="location"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
@@ -191,7 +265,7 @@ export default function FormFoundPet() {
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                   >
                     {" "}
-                    Enter Your Location Detail
+                    Enter Location Detail
                   </label>
                 </div>
               </div>
@@ -248,11 +322,12 @@ export default function FormFoundPet() {
               <div>
                 <div className="relative mt-2 w-full">
                   <input
-                    type="text"
+                    type="file"
                     id="image"
                     {...register("image")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
+                    onChange={handleImageChange}
                   />
                   <label
                     htmlFor="image"
