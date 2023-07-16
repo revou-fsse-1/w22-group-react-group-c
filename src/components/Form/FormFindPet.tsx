@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import jwt_decode from "jwt-decode";
+import ImageKit from "imagekit";
+import { ReadStream } from "fs";
+import "dotenv/config";
 
 interface FormProps {
   title: string;
@@ -18,7 +22,23 @@ interface FormProps {
 }
 
 export default function FormFindPet() {
+  const [selectedImage, setSelectedImage] = useState<any>(null);
   const router = useRouter();
+  const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
+  const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
+  const urlEndpointEnv = process.env.NEXT_PUBLIC_URL_ENDPOINT as string;
+
+  const imagekit = new ImageKit({
+    publicKey: publicKeyEnv,
+    privateKey: privateKeyEnv,
+    urlEndpoint: urlEndpointEnv,
+  });
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setSelectedImage(file);
+  };
+  // console.log(selectedImage);
 
   const schema = yup
     .object({
@@ -44,17 +64,42 @@ export default function FormFindPet() {
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
     try {
-      await axios.post("", {
-        title: data.title,
-        description: data.description,
-        name: data.name,
-        location: data.location,
-        locationDetail: data.locationDetail,
-        species: data.species,
-        contact: data.contact,
-        image: data.image,
+      const token = window.localStorage.getItem("token");
+      const decodedToken: { userId: string } = jwt_decode(token as string);
+      const userId = decodedToken.userId;
+
+      const originalFilename = selectedImage?.name || "image.jpg"; // Use the original filename if available, otherwise use a fallback
+
+      // Upload the image to ImageKit
+      const response = await imagekit.upload({
+        file: selectedImage, // Use the selected image file
+        fileName: originalFilename,
       });
-      console.log(data);
+
+      const imageUrl = response.url; // Get the uploaded image URL
+
+      await axios.post(
+        "https://wheremypets-backend-production.up.railway.app/find",
+        {
+          title: data.title,
+          description: data.description,
+          name: data.name,
+          location: data.location,
+          locationDetail: data.locationDetail,
+          species: data.species,
+          contact: data.contact,
+          image: imageUrl,
+          userId: userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(data);
+      // console.log(decodedToken);
+      // console.log(imageUrl);
       router.push("/auth/login");
     } catch (error) {
       console.log(error);
@@ -72,11 +117,12 @@ export default function FormFindPet() {
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
+                <h2 className="font-semibold text-lg">Title </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
                     id="title"
-                    {...register("title")}
+                    {...register("title")} // Register email input
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
                   />
@@ -94,20 +140,20 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Description </h2>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <textarea
+                    rows={10}
                     id="description"
                     {...register("description")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                    placeholder="Enter Description"
+                  ></textarea>
                   <label
                     htmlFor="description"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                   >
                     {" "}
-                    Enter Description
                   </label>
                 </div>
               </div>
@@ -118,6 +164,7 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Name</h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -140,14 +187,56 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5">Location </h2>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <select
                     id="location"
                     {...register("location")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                  >
+                    <option value="">Select a Province</option>
+
+                    <option value="Aceh">Aceh</option>
+                    <option value="Bali">Bali</option>
+                    <option value="Bangka Belitung">Bangka Belitung</option>
+                    <option value="Banten">Banten</option>
+                    <option value="Bengkulu">Bengkulu</option>
+                    <option value="DKI Jakarta">Jakarta</option>
+                    <option value="Jawa Tengah">Jawa Tengah</option>
+                    <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                    <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                    <option value="Jawa Timur">Jawa Timur</option>
+                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                    <option value="Nusa Tenggara Timur">
+                      Nusa Tenggara Timur
+                    </option>
+                    <option value="Gorontalo">Gorontalo</option>
+                    <option value="Jambi">Jambi</option>
+                    <option value="Lampung">Lampung</option>
+                    <option value="Maluku">Maluku</option>
+                    <option value="Kalimantan Utara">Kalimantan Utara</option>
+                    <option value="Maluku Utara">Maluku Utara</option>
+                    <option value="Sulawesi Utara">Sulawesi Utara</option>
+                    <option value="Sumatera Utara">Sumatera Utara</option>
+                    <option value="Papua">Papua</option>
+                    <option value="Riau">Riau</option>
+                    <option value="Kepulauan Riau">Kepulauan Riau</option>
+                    <option value="Kalimantan Selatan">
+                      Kalimantan Selatan
+                    </option>
+                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                    <option value="Sumatera Selatan">Sumatera Selatan</option>
+                    <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                    <option value="Jawa Barat">Jawa Barat</option>
+                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                    <option value="Nusa Tenggara Barat">
+                      Nusa Tenggara Barat
+                    </option>
+                    <option value="Papua Barat">Papua Barat</option>
+                    <option value="Sulawesi Barat">Sulawesi Barat</option>
+                    <option value="Sumatera Barat">Sumatera Barat</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                  </select>
                   <label
                     htmlFor="location"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
@@ -164,20 +253,22 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Location Detail{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
-                  <input
-                    type="text"
+                  <textarea
+                    rows={6}
                     id="locationDetail"
                     {...register("locationDetail")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                    placeholder=" "
-                  />
+                    placeholder="Enter Location Detail"
+                  ></textarea>
                   <label
                     htmlFor="locationDetail"
                     className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                   >
                     {" "}
-                    Enter Your Location Detail
                   </label>
                 </div>
               </div>
@@ -188,6 +279,9 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Species{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -210,6 +304,9 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Contact{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
                     type="text"
@@ -232,13 +329,17 @@ export default function FormFindPet() {
               )}
 
               <div>
+                <h2 className="font-semibold text-lg mt-5 text-slate-700">
+                  Image{" "}
+                </h2>
                 <div className="relative mt-2 w-full">
                   <input
-                    type="text"
+                    type="file"
                     id="image"
                     {...register("image")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" "
+                    onChange={handleImageChange}
                   />
                   <label
                     htmlFor="image"
@@ -253,7 +354,7 @@ export default function FormFindPet() {
                 <p className="text-red-500 text-sm">{errors.image.message}</p>
               )}
 
-              <div className="z-50 text-center mt-3">
+              <div className="z-50 text-center mt-5">
                 <button
                   className="rounded-lg z-30 bg-blue-600 hover:bg-blue-500 px-32 py-4 font-bold text-lg text-white"
                   type="submit"
