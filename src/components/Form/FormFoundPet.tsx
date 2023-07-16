@@ -38,7 +38,7 @@ export default function FormFoundPet() {
     const file = event.target.files?.[0];
     setSelectedImage(file);
   };
-  console.log(selectedImage);
+  // console.log(selectedImage);
 
   const schema = yup
     .object({
