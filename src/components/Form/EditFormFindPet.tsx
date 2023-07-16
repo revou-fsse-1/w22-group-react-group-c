@@ -330,14 +330,14 @@ export default function EditFindPetForm() {
               )}
 
               <div>
-                <h2 className="font-semibold text-lg mt-5">Location </h2>
+                <h2 className="font-semibold text-lg mt-5">Status </h2>
                 <div className="relative mt-2 w-full">
                   <select
                     id="location"
                     {...register("location")}
                     className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                   >
-                    <option value="">Select a Province</option>
+                    <option value="">Select Status</option>
 
                     <option value="true">Found</option>
                     <option value="false">Not Found</option>
