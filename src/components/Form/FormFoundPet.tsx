@@ -27,9 +27,6 @@ export default function FormFoundPet() {
   const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
   const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
   const urlEndpointEnv = process.env.NEXT_PUBLIC_URL_ENDPOINT as string;
-  console.log(publicKeyEnv);
-  console.log(privateKeyEnv);
-  console.log(urlEndpointEnv);
 
   const imagekit = new ImageKit({
     publicKey: publicKeyEnv,
@@ -102,7 +99,7 @@ export default function FormFoundPet() {
       );
       // console.log(data);
       // console.log(decodedToken);
-      console.log(imageUrl);
+      // console.log(imageUrl);
       router.push("/auth/login");
     } catch (error) {
       console.log(error);
