@@ -80,7 +80,7 @@ export default function EditFindPetForm() {
       }
 
       await axios.patch(
-        `https://wheremypets-backend-production.up.railway.app/find/${postId}`,
+        `https://wheremypets-backend-production.up.railway.app/find`, // add ${postID}
         {
           title: data.title,
           description: data.description,
