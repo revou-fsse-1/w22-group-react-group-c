@@ -52,8 +52,35 @@ export default function Register() {
   return (
     <div>
       <div>
-        <div className="p-56">
-          <div className="flex w-[500px]  flex-col space-y-5 rounded-lg border py-20 px-5 shadow-xl mx-auto">
+        <div className="p-14">
+          <div className="flex w-[500px] flex-col space-y-5 rounded-lg border py-16 px-5 shadow-xl mx-auto">
+            <div className="flex">
+              <button
+                type="button"
+                className=" text-black rounded-l-md border-r border-gray-100 py-2  px-3"
+              >
+                <div className="flex flex-row align-middle">
+                  <svg
+                    className="w-5 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <Link
+                    href="/"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Back
+                  </Link>
+                </div>
+              </button>
+            </div>
             <div className="mx-auto mb-2 space-y-3">
               <h1 className=" text-3xl font-bold text-gray-700">
                 Register Form
@@ -129,10 +156,10 @@ export default function Register() {
               )}
               <div className="z-50 text-center mt-3">
                 <button
-                  className="rounded-lg z-30 bg-blue-600 hover:bg-blue-500 px-32 py-4 font-bold text-lg text-white"
+                  className="rounded-lg z-30 bg-[#54be0d] hover:bg-[#4ba212] px-32 py-4 font-bold text-lg text-white shadow-black shadow-sm"
                   type="submit"
                 >
-                  Register
+                  <span className="drop-shadow-lg">Register</span>
                 </button>
               </div>
             </form>
