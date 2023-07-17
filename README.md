@@ -8,4 +8,4 @@ Link Figma : https://www.figma.com/file/DD0gPWylrWM4ZzTst6i7e0/Project-Akhir?typ
 
 Link backend: https://wheremypets-backend-production.up.railway.app/docs
 
-Link preview website : https://w22-group-react-group-dyxqalow7-dandi-revou.vercel.app/
+Link preview website : https://w22-group-react-group-c.vercel.app/
