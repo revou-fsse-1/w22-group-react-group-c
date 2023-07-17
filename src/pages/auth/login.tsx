@@ -52,7 +52,7 @@ export default function Login() {
       <div className="p-56">
         <div className="flex w-[500px]  flex-col space-y-5 rounded-lg border py-20 px-5 shadow-xl mx-auto">
           <div className="mx-auto mb-2 space-y-3">
-            <h1 className=" text-3xl font-bold text-gray-700">Login Toko-Ku</h1>
+            <h1 className=" text-3xl font-bold text-gray-700">Login Form</h1>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -41,9 +41,11 @@ export default function Navbar() {
             <Image src="/logo-navbar.png" width={100} height={100} alt="logo" />
           </div>
           <div className="flex items-center">
-            <button className="px-2 text-xl font-bold">Login</button>
+            <button className="px-2 text-xl font-bold">
+              <Link href="/auth/login">Login</Link>
+            </button>
             <button className="bg-[#99d96e] border-black hover:bg-[#7bbb50] rounded-2xl text-white font-bold py-2 px-4">
-              Sign up
+              <Link href="/auth/register">Register</Link>
             </button>
           </div>
         </div>
