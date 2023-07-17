@@ -2,6 +2,7 @@ import LogoutButton from "@/components/LogoutButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Select, Option } from "@material-tailwind/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,30 +12,12 @@ export default function Navbar() {
       <nav className="bg-[#FFD6A5] w-full z-50 fixed px-4 py-2 drop-shadow-xl shadow-md shadow-[#1c1c1c]">
         <div className="flex justify-between items-center">
           <div className="flex items-center text-white">
-            <div className="relative">
-              <button className="text-black focus:outline-none">
-                Dropdown
-              </button>
-              <div className="absolute bg-gray-700 mt-2 py-2 w-48 rounded-md shadow-lg hidden">
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-white hover:bg-gray-600"
-                >
-                  Option 1
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-white hover:bg-gray-600"
-                >
-                  Option 2
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-white hover:bg-gray-600"
-                >
-                  Option 3
-                </a>
-              </div>
+            <div className="w-28 text-black">
+              <Select className="" label="Menu">
+                <Option className="text-black">Homepage</Option>
+                <Option className="text-black">Found Pet List</Option>
+                <Option className="text-black">Find Pet List</Option>
+              </Select>
             </div>
           </div>
           <div className="flex items-center text-black">
