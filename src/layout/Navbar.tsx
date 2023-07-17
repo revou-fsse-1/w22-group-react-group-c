@@ -12,8 +12,8 @@ export default function Navbar() {
       <nav className="bg-[#FFD6A5] w-full z-50 fixed px-4 py-2 drop-shadow-xl shadow-md shadow-[#1c1c1c]">
         <div className="flex justify-between items-center">
           <div className="flex items-center text-white">
-            <div className="w-28 text-black">
-              <Select className="" label="Menu">
+            <div className="w-28 text-black font-bold">
+              <Select className="font-bold" label="Menu">
                 <Option className="text-black">Homepage</Option>
                 <Option className="text-black">Found Pet List</Option>
                 <Option className="text-black">Find Pet List</Option>
