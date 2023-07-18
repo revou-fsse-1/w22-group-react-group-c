@@ -91,7 +91,7 @@ export default function MiddleNav() {
 
         <div className="">
           <div className="mt-10 w-64 md:w-72 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
-            <a className="relative flex h-60 overflow-hidden">
+            <div className="relative flex h-60 overflow-hidden">
               <Image
                 className="absolute top-0 right-0 h-full w-full object-cover"
                 src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=436&q=80"
@@ -103,14 +103,14 @@ export default function MiddleNav() {
               <div className="absolute bottom-14 mb-4 flex w-full justify-center space-x-4">
                 <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
                   <button className="font-bold text-white text-2xl">
-                    Find Pet List
+                    <Link href="/">Find Pet List</Link>
                   </button>
                 </div>
               </div>
               <div className="absolute top-14 mb-4 flex w-full justify-center space-x-4">
                 <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
                   <button className="font-bold text-white text-2xl">
-                    Found Pet List
+                    <Link href="/">Found Pet List</Link>
                   </button>
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function MiddleNav() {
                   </svg>
                 </button>
               </div>
-            </a>
+            </div>
             <div className="">
               {/* <button
                 onClick={() =>

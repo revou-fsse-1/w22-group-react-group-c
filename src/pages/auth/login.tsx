@@ -49,8 +49,8 @@ export default function Login() {
   };
   return (
     <div>
-      <div className="p-14">
-        <div className="flex w-[500px]  flex-col space-y-5 rounded-lg border py-16 px-5 shadow-xl mx-auto">
+      <div className="p-6 md:p-14">
+        <div className="flex w-full md:w-[500px] flex-col space-y-5 rounded-lg border py-16 px-5 shadow-xl mx-auto">
           <div className="flex">
             {/* <Link href="/"> */}
             <button
@@ -131,7 +131,7 @@ export default function Login() {
             )}
             <div className="z-50 text-center mt-3">
               <button
-                className="rounded-lg z-30 bg-[#54be0d] hover:bg-[#4ba212] px-32 py-4 font-bold text-lg text-white shadow-black shadow-sm"
+                className="rounded-lg z-30 bg-[#54be0d] hover:bg-[#4ba212] px-16 sm:px-32 md:px-32 py-4 font-bold text-lg text-white shadow-black shadow-sm"
                 type="submit"
               >
                 <span className="drop-shadow-lg">Login</span>
