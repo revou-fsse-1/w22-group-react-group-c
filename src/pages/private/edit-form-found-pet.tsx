@@ -1,10 +1,13 @@
 import EditFoundPetForm from "@/components/Form/EditFormFoundPet";
+import PrivateLayout from "@/layout/PrivateLayout";
 import React from "react";
 
 export default function EditFoundPetFormRouter() {
   return (
-    <div>
-      <EditFoundPetForm />
-    </div>
+    <PrivateLayout>
+      <div>
+        <EditFoundPetForm />
+      </div>
+    </PrivateLayout>
   );
 }
