@@ -38,20 +38,24 @@ export default function MiddleNav() {
           />
         </div>
       </div> */}
-      <section className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-9 mt-10 mb-20">
+      <section className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11 mt-10 mb-20">
         <div className="">
           <div className="mt-10 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
             <a className="relative flex h-60 overflow-hidden" href="#">
-              <img
+              <Image
                 className="absolute top-0 right-0 h-full w-full object-cover"
                 src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80"
                 alt="product image"
+                width={500}
+                height={500}
               />
-              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-              </div> */}
+              <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
+                <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
+                  <h2 className="font-bold text-white text-3xl">
+                    Found Pet Form
+                  </h2>
+                </div>
+              </div>
               <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
                 <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
                   <svg
@@ -69,11 +73,7 @@ export default function MiddleNav() {
                 </button>
               </div>
             </a>
-            <div className="mt-4 text-center px-5 pb-5">
-              <a href="#">
-                <h5 className="text-xl tracking-tight text-slate-900">test</h5>
-              </a>
-
+            <div className="">
               {/* <button
                 onClick={() =>
                   handleWishlist({ name: product.title, productId: product.id })
@@ -89,16 +89,29 @@ export default function MiddleNav() {
         <div className="">
           <div className="mt-10 w-64 md:w-72 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
             <a className="relative flex h-60 overflow-hidden" href="#">
-              <img
+              <Image
                 className="absolute top-0 right-0 h-full w-full object-cover"
                 src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=436&q=80"
                 alt="husky image"
+                width={500}
+                height={500}
               />
-              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-              </div> */}
+
+              <div className="absolute bottom-14 mb-4 flex w-full justify-center space-x-4">
+                <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
+                  <h2 className="font-bold text-white text-2xl">
+                    Find Pet List
+                  </h2>
+                </div>
+              </div>
+              <div className="absolute top-14 mb-4 flex w-full justify-center space-x-4">
+                <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
+                  <h2 className="font-bold text-white text-2xl">
+                    Found Pet List
+                  </h2>
+                </div>
+              </div>
+
               <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
                 <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
                   <svg
@@ -116,11 +129,7 @@ export default function MiddleNav() {
                 </button>
               </div>
             </a>
-            <div className="mt-4 text-center px-5 pb-5">
-              <a href="#">
-                <h5 className="text-xl tracking-tight text-slate-900">test</h5>
-              </a>
-
+            <div className="">
               {/* <button
                 onClick={() =>
                   handleWishlist({ name: product.title, productId: product.id })
@@ -136,16 +145,20 @@ export default function MiddleNav() {
         <div className="">
           <div className="mt-10 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
             <a className="relative flex h-60 overflow-hidden" href="#">
-              <img
+              <Image
                 className="absolute top-0 right-0 h-full w-full object-cover"
                 src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=929&q=80"
                 alt="cat-photo"
+                width={500}
+                height={500}
               />
-              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
-              </div> */}
+              <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
+                <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
+                  <h2 className="font-bold text-white text-3xl">
+                    Find Pet Form
+                  </h2>
+                </div>
+              </div>
               <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
                 <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
                   <svg
