@@ -69,7 +69,6 @@ export default function Home({ initialData }: HomeProps) {
         <Video />
         <AboutComponent />
         <PreviewPostComponent />
-        <FooterComponent />
       </main>
     </Layout>
   );
