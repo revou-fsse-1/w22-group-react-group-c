@@ -5,6 +5,10 @@ import Layout from "@/layout/Layout";
 import dynamic from "next/dynamic";
 import Carousel from "@/components/Homepage/Carousel";
 import MiddleNav from "@/components/Homepage/MiddleNav";
+import AboutComponent from "@/components/Homepage/AboutUs";
+import PreviewPostComponent from "@/components/Homepage/PreviewPost";
+import FooterComponent from "@/layout/Footer";
+
 // import Video from "@/components/Homepage/Video";
 
 const Video = dynamic(() => import("@/components/Homepage/Video"), {
@@ -63,6 +67,9 @@ export default function Home({ initialData }: HomeProps) {
         <Carousel />
         <MiddleNav />
         <Video />
+        <AboutComponent />
+        <PreviewPostComponent />
+        <FooterComponent />
       </main>
     </Layout>
   );
