@@ -60,7 +60,7 @@ export default function Home({ initialData }: HomeProps) {
       >
         <Carousel />
         <MiddleNav />
-        <Video />
+        {/* <Video /> */}
       </main>
     </Layout>
   );

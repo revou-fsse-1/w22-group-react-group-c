@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MiddleNav() {
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-8 mt-10">
-        <div className=" relative flex items-center justify-center">
+    <>
+      {/* <div className=" relative flex items-center justify-center">
+        <div className="grid grid-cols-3 gap-8 mt-10">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80"
@@ -36,7 +37,135 @@ export default function MiddleNav() {
             className="h-full  w-full rounded-xl shadow-lg shadow-black"
           />
         </div>
-      </div>
-    </div>
+      </div> */}
+      <section className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-9 mt-10 mb-20">
+        <div className="">
+          <div className="mt-10 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
+            <a className="relative flex h-60 overflow-hidden" href="#">
+              <img
+                className="absolute top-0 right-0 h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80"
+                alt="product image"
+              />
+              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+              </div> */}
+              <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
+                <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <div className="mt-4 text-center px-5 pb-5">
+              <a href="#">
+                <h5 className="text-xl tracking-tight text-slate-900">test</h5>
+              </a>
+
+              {/* <button
+                onClick={() =>
+                  handleWishlist({ name: product.title, productId: product.id })
+                }
+                className="inline-flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700"
+              >
+                Add to wishlist
+              </button> */}
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="mt-10 w-64 md:w-72 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
+            <a className="relative flex h-60 overflow-hidden" href="#">
+              <img
+                className="absolute top-0 right-0 h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=436&q=80"
+                alt="husky image"
+              />
+              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+              </div> */}
+              <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
+                <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </a>
+            <div className="mt-4 text-center px-5 pb-5">
+              <a href="#">
+                <h5 className="text-xl tracking-tight text-slate-900">test</h5>
+              </a>
+
+              {/* <button
+                onClick={() =>
+                  handleWishlist({ name: product.title, productId: product.id })
+                }
+                className="inline-flex items-center justify-center bg-gray-900 px-2 py-1 text-sm text-white transition hover:bg-gray-700"
+              >
+                Add to wishlist
+              </button> */}
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="mt-10 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
+            <a className="relative flex h-60 overflow-hidden" href="#">
+              <img
+                className="absolute top-0 right-0 h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=929&q=80"
+                alt="cat-photo"
+              />
+              {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-white"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+                <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
+              </div> */}
+              <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
+                <button className="flex h-10 w-10 items-center justify-center bg-gray-900 text-white transition hover:bg-gray-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
