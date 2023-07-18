@@ -160,7 +160,7 @@ export default function MiddleNav() {
               />
               <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
                 <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
-                  <button className="font-bold text-white text-3xl">
+                  <button className="font-bold text-white text-2xl">
                     Find Pet Form
                   </button>
                 </div>
