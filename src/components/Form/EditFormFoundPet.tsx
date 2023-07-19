@@ -19,6 +19,7 @@ interface FormProps {
   species?: string;
   contact?: string;
   image?: string;
+  isFound?: boolean;
 }
 
 export default function EditFoundPetForm() {
@@ -51,6 +52,7 @@ export default function EditFoundPetForm() {
       species: yup.string().optional(),
       contact: yup.string().optional(),
       image: yup.string().optional(),
+      isFound: yup.boolean().optional(),
     })
     .required();
 
@@ -70,6 +72,7 @@ export default function EditFoundPetForm() {
       const userId = decodedToken.userId;
 
       let imageUrl = ""; // Initialize the imageUrl variable
+      let updatedData: FormProps = {}; // Initialize the updatedData object
 
       if (selectedImage) {
         const originalFilename = selectedImage?.name || "image.jpg";
@@ -78,31 +81,40 @@ export default function EditFoundPetForm() {
           fileName: originalFilename,
         });
         imageUrl = response.url;
+      } else {
+        // If no image is selected, exclude the image field from updatedData
+        delete updatedData.image;
       }
 
-      await axios.patch(
+      // Conditionally add properties to updatedData based on form data
+      if (data.title) updatedData.title = data.title;
+      if (data.description) updatedData.description = data.description;
+      if (data.name) updatedData.name = data.name;
+      if (data.location) updatedData.location = data.location;
+      if (data.locationDetail) updatedData.locationDetail = data.locationDetail;
+      if (data.species) updatedData.species = data.species;
+      if (data.contact) updatedData.contact = data.contact;
+
+      // Only add the image property if an image is selected
+      if (imageUrl) {
+        updatedData.image = imageUrl;
+      }
+
+      const response = await axios.patch(
         `https://wheremypets-backend-production.up.railway.app/found/${id}`, // add ${postID}
-        {
-          title: data.title,
-          description: data.description,
-          name: data.name,
-          location: data.location,
-          locationDetail: data.locationDetail,
-          species: data.species,
-          contact: data.contact,
-          image: imageUrl,
-          userId: userId,
-        },
+
+        updatedData,
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      // console.log(data);
-      // console.log(decodedToken);
+      console.log(updatedData);
+      console.log(response.data);
       // console.log(imageUrl);
-      router.push("/auth/login");
+      // router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -328,34 +340,6 @@ export default function EditFoundPetForm() {
               </div>
               {errors.contact && (
                 <p className="text-red-500 text-sm">{errors.contact.message}</p>
-              )}
-
-              <div>
-                <h2 className="font-semibold text-lg mt-5">Status </h2>
-                <div className="relative mt-2 w-full">
-                  <select
-                    id="location"
-                    {...register("location")}
-                    className="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
-                  >
-                    <option value="">Select Status</option>
-
-                    <option value="true">Found</option>
-                    <option value="false">Not Found</option>
-                  </select>
-                  <label
-                    htmlFor="location"
-                    className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
-                  >
-                    {" "}
-                    Enter Your Current Location
-                  </label>
-                </div>
-              </div>
-              {errors.location && (
-                <p className="text-red-500 text-sm">
-                  {errors.location.message}
-                </p>
               )}
 
               <div>
