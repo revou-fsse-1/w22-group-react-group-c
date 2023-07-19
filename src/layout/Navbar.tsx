@@ -95,10 +95,10 @@ export default function Navbar() {
                   <Link href="/">Home</Link>
                 </li>
                 <li className="text-gray-600 font-bold hover:text-blue-600">
-                  <Link href="/get-found-pet-list">Found Pet List</Link>
+                  <Link href="/private/get-found-pet-list">Found Pet List</Link>
                 </li>
                 <li className="text-gray-600 font-bold hover:text-blue-600">
-                  <Link href="/get-find-pet-list">Find Pet List</Link>
+                  <Link href="/private/get-find-pet-list">Find Pet List</Link>
                 </li>
 
                 <div className="flex items-center">
