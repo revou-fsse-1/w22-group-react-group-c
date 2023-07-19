@@ -38,7 +38,7 @@ export default function FindPetList() {
   console.log(data);
 
   const handleClick = (id: string) => {
-    router.push(`/pet-description?id=${id}`);
+    router.push(`/pet-description?id=${id}&type=find`);
   };
 
   return (

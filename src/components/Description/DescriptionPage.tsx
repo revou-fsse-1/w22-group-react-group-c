@@ -18,13 +18,13 @@ interface PetData {
 export default function DescriptionComponent() {
   const [data, setData] = useState<PetData[] | any>([]);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, type } = router.query;
 
   const fetchData = async (id: string) => {
     try {
       const token = window.localStorage.getItem("token");
       const response = await axios.get(
-        `https://wheremypets-backend-production.up.railway.app/find/${id}`,
+        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setData(response.data);
