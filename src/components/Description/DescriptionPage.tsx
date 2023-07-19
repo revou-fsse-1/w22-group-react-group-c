@@ -36,6 +36,11 @@ export default function DescriptionComponent() {
     }
   };
 
+  const handleEdit = (type: string | string[] | undefined) => {
+    // Redirect to the edit page and pass the current id and type as query parameters
+    router.push(`/private/edit-form-${type}-pet?id=${id}`);
+  };
+
   const fetchData = async (id: string) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -129,7 +134,7 @@ export default function DescriptionComponent() {
             </dl>
 
             <button onClick={handleChangeStatus}>change status</button>
-            <button>edit</button>
+            <button onClick={() => handleEdit(type)}>edit</button>
             <button>delete</button>
 
             <h1 className="mb-6 text-3xl font-bold text-center">DESKRIPSI</h1>

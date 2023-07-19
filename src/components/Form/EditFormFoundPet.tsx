@@ -24,6 +24,7 @@ interface FormProps {
 export default function EditFoundPetForm() {
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const router = useRouter();
+  const { id, type } = router.query;
   const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
   const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
   const urlEndpointEnv = process.env.NEXT_PUBLIC_URL_ENDPOINT as string;
@@ -80,7 +81,7 @@ export default function EditFoundPetForm() {
       }
 
       await axios.patch(
-        `https://wheremypets-backend-production.up.railway.app/found`, // add ${postID}
+        `https://wheremypets-backend-production.up.railway.app/found/${id}`, // add ${postID}
         {
           title: data.title,
           description: data.description,
