@@ -20,6 +20,22 @@ export default function DescriptionComponent() {
   const router = useRouter();
   const { id, type } = router.query;
 
+  const handleChangeStatus = async () => {
+    try {
+      const token = window.localStorage.getItem("token");
+      const updatedData = { ...data, isFound: !data.isFound }; // Toggle the value of `isFound`
+      await axios.patch(
+        // Replace "put" with "patch" if you are using a PATCH request
+        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
+        updatedData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setData(updatedData); // Update the local state with the updated data
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchData = async (id: string) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -111,6 +127,10 @@ export default function DescriptionComponent() {
                 </dd>
               </div>
             </dl>
+
+            <button onClick={handleChangeStatus}>change status</button>
+            <button>edit</button>
+            <button>delete</button>
 
             <h1 className="mb-6 text-3xl font-bold text-center">DESKRIPSI</h1>
 
