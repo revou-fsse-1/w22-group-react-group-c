@@ -41,6 +41,20 @@ export default function DescriptionComponent() {
     router.push(`/private/edit-form-${type}-pet?id=${id}`);
   };
 
+  const handleDelete = async (id: string | string[] | undefined) => {
+    try {
+      const token = window.localStorage.getItem("token");
+      await axios.delete(
+        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert("data sucessfully deleted");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchData = async (id: string) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -135,7 +149,7 @@ export default function DescriptionComponent() {
 
             <button onClick={handleChangeStatus}>change status</button>
             <button onClick={() => handleEdit(type)}>edit</button>
-            <button>delete</button>
+            <button onClick={() => handleDelete(id)}>delete</button>
 
             <h1 className="mb-6 text-3xl font-bold text-center">DESKRIPSI</h1>
 
