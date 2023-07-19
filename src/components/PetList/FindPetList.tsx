@@ -1,6 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 interface FindPetData {
   id: string;
@@ -17,6 +18,7 @@ interface FindPetData {
 
 export default function FindPetList() {
   const [data, setData] = useState<FindPetData[]>([]);
+  const router = useRouter();
 
   const fetchData = async () => {
     try {
@@ -34,6 +36,10 @@ export default function FindPetList() {
   }, []);
 
   console.log(data);
+
+  const handleClick = (id: string) => {
+    router.push(`/pet-description?id=${id}`);
+  };
 
   return (
     <div>
@@ -63,7 +69,12 @@ export default function FindPetList() {
                     {item.isFound ? "DITEMUKAN" : "BELUM DITEMUKAN"}
                   </span>
                 </p>
-                <div className="text-center font-bold mt-5">Read More...</div>
+                <div
+                  onClick={() => handleClick(item.id)}
+                  className="text-center font-bold mt-5 cursor-pointer"
+                >
+                  Read More...
+                </div>
               </div>
             </div>
           ))}
