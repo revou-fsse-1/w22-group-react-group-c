@@ -1,10 +1,13 @@
 import FindPetList from "@/components/PetList/FindPetList";
+import PrivateLayout from "@/layout/PrivateLayout";
 import React from "react";
 
 export default function getFindPetListRoute() {
   return (
-    <div>
-      <FindPetList />
-    </div>
+    <PrivateLayout>
+      <div>
+        <FindPetList />
+      </div>
+    </PrivateLayout>
   );
 }
