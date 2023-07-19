@@ -100,7 +100,7 @@ export default function FormFindPet() {
       // console.log(data);
       // console.log(decodedToken);
       // console.log(imageUrl);
-      router.push("/auth/login");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
