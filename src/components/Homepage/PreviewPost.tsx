@@ -72,7 +72,7 @@ export default function PreviewPostComponent() {
         <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 gap-11 mt-10 mb-20 ">
           <div
             // key={item.id}
-            className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
+            className="mt-20 text-center sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-slate-600 shadow-lg"
           >
             <img
               className="w-full h-[40rem] md:h-[45rem] object-cover md:object-cover"
@@ -103,7 +103,7 @@ export default function PreviewPostComponent() {
 
           <div
             // key={item.id}
-            className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
+            className="mt-20 text-center sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg shadow-slate-600"
           >
             <img
               className="w-full h-[40rem] md:h-[45rem] object-cover md:object-cover"
