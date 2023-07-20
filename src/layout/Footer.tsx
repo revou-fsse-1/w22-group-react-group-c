@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function FooterComponent() {
   return (
     <div>
@@ -11,7 +13,9 @@ export default function FooterComponent() {
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <img src="/logo-navbar.png" className="h-8 mr-3" />
+              <Link href="/">
+                <img src="/logo-navbar.png" className="h-8 mr-3" />
+              </Link>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
@@ -20,10 +24,20 @@ export default function FooterComponent() {
                 </h2>
                 <ul className="text-gray-800 font-medium">
                   <li className="mb-4">
-                    <a className="hover:underline">Found Pet List</a>
+                    <Link
+                      href="/private/get-found-pet-list"
+                      className="hover:underline"
+                    >
+                      Found Pet List
+                    </Link>
                   </li>
                   <li>
-                    <a className="hover:underline">Find Pet List</a>
+                    <Link
+                      href="/private/get-find-pet-list"
+                      className="hover:underline"
+                    >
+                      Find Pet List
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -33,10 +47,14 @@ export default function FooterComponent() {
                 </h2>
                 <ul className="text-gray-800 font-medium">
                   <li className="mb-4">
-                    <a className="hover:underline ">Sign In</a>
+                    <Link href="/auth/login" className="hover:underline ">
+                      Sign In
+                    </Link>
                   </li>
                   <li>
-                    <a className="hover:underline">Sign Up</a>
+                    <Link href="/auth/register" className="hover:underline ">
+                      Sign Up
+                    </Link>
                   </li>
                 </ul>
               </div>
