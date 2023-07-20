@@ -107,7 +107,7 @@ export default function FormFindPet() {
   };
   return (
     <div>
-      <div className="p-4 md:p-10">
+      <div className="p-4 pt-32 md:p-36">
         <div className="flex flex-col space-y-5 rounded-lg border py-10 px-5 shadow-xl mx-auto max-w-[500px]">
           <div className="flex">
             {/* <Link href="/"> */}
