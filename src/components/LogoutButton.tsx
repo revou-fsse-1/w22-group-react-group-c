@@ -3,9 +3,11 @@ import React from "react";
 
 export default function LogoutButton() {
   const router = useRouter();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     router.push("/");
+    router.reload();
   };
 
   return (
