@@ -1,6 +1,11 @@
 export default function AboutComponent() {
   return (
-    <div className="rounded-xl bg-[#FFD6A5] mt-20 pt-20 pb-20 text-center">
+    <div className="relative rounded-xl mt-20 pt-20 pb-20 text-center">
+      <img
+        src="/blobs.png"
+        alt=""
+        className="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-fixed object-cover -z-50 rounded-xl"
+      />
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
         Where my Pets?
       </h1>
