@@ -4,7 +4,7 @@ export default function AboutComponent() {
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
         Where my Pets?
       </h1>
-      <p className="mb-6 text-lg font-normal text-gray-600 lg:text-xl sm:px-10 xl:px-48 min-[360px]:px-5 dark:text-gray-400">
+      <p className="mb-6 text-lg font-normal text-gray-600 lg:text-xl sm:px-10 xl:px-48 min-[360px]:px-5">
         At Where My Pets?, we understand the heartache and anxiety that comes
         with losing a beloved furry companion. Our brand is dedicated to being a
         guiding light in those uncertain times, offering a reliable and
