@@ -91,13 +91,13 @@ export default function Navbar() {
               }`}
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                <li className="text-gray-600 font-bold hover:text-blue-600">
+                <li className="py-2 px-2 hover:bg-[#CBFFA9] hover:shadow hover:text-slate-950 hover:ring-2 rounded-xl ring-black text-gray-700  transition ease-in-out hover:-translate-y-0 hover:scale-105 delay-150 font-medium">
                   <Link href="/">Home</Link>
                 </li>
-                <li className="text-gray-600 font-bold hover:text-blue-600">
+                <li className="py-2 px-2 hover:bg-[#CBFFA9] hover:shadow hover:text-slate-950 hover:ring-2 rounded-xl ring-black text-gray-700  transition ease-in-out hover:-translate-y-0 hover:scale-105 delay-150 font-medium">
                   <Link href="/private/get-found-pet-list">Found Pet List</Link>
                 </li>
-                <li className="text-gray-600 font-bold hover:text-blue-600">
+                <li className="py-2 px-2 hover:bg-[#CBFFA9] hover:shadow hover:text-slate-950 hover:ring-2 rounded-xl ring-black text-gray-700  transition ease-in-out hover:-translate-y-0 hover:scale-105 delay-150 font-medium">
                   <Link href="/private/get-find-pet-list">Find Pet List</Link>
                 </li>
 
