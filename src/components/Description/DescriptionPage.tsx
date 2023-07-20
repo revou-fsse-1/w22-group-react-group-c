@@ -1,6 +1,12 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Button } from "@material-tailwind/react";
+import {
+  ArrowPathIcon,
+  TrashIcon,
+  DocumentChartBarIcon,
+} from "@heroicons/react/24/outline";
 
 interface PetData {
   id: string;
@@ -84,9 +90,11 @@ export default function DescriptionComponent() {
   console.log(data);
   return (
     <>
-      <div className="container py-32 mx-auto md:px-6">
+      <div className="container py-32 p-2 mx-auto md:px-6">
         <>
-          <h1 className="mb-6 text-3xl font-bold text-center">{data.title}</h1>
+          <h1 className="mb-6 text-3xl font-bold text-center uppercase">
+            {data.title}
+          </h1>
           <section className="mb-32">
             <img
               src={data.image}
@@ -147,11 +155,54 @@ export default function DescriptionComponent() {
               </div>
             </dl>
 
-            <button onClick={handleChangeStatus}>change status</button>
-            <button onClick={() => handleEdit(type)}>edit</button>
-            <button onClick={() => handleDelete(id)}>delete</button>
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={handleChangeStatus}
+                variant="gradient"
+                color="green"
+                className="hidden md:flex items-center gap-3"
+              >
+                <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
+                Change Status
+              </Button>
+              <Button
+                onClick={() => handleEdit(type)}
+                variant="gradient"
+                color="green"
+                className="flex items-center gap-3"
+              >
+                <DocumentChartBarIcon strokeWidth={2} className="h-5 w-5" />
+                Edit
+              </Button>
 
-            <h1 className="mb-6 text-3xl font-bold text-center">DESKRIPSI</h1>
+              <Button
+                onClick={() => handleDelete(id)}
+                variant="gradient"
+                color="red"
+                className="flex items-center gap-3"
+              >
+                <TrashIcon strokeWidth={2} className="h-5 w-5" />
+                Delete
+              </Button>
+
+              {/* <Button variant="text" className="flex items-center gap-2">
+                Read More{" "}
+                <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+              </Button> */}
+            </div>
+            <Button
+              onClick={handleChangeStatus}
+              variant="gradient"
+              color="green"
+              className="flex md:hidden mt-2 items-center gap-3"
+            >
+              <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
+              Change Status
+            </Button>
+
+            <h1 className="mb-6 text-3xl font-bold mt-6 text-center">
+              DESKRIPSI
+            </h1>
 
             <p>{data.description}</p>
           </section>
