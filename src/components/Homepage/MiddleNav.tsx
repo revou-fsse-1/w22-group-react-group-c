@@ -5,39 +5,6 @@ import Link from "next/link";
 export default function MiddleNav() {
   return (
     <>
-      {/* <div className=" relative flex items-center justify-center">
-        <div className="grid grid-cols-3 gap-8 mt-10">
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80"
-              alt="cat-photo"
-              width={500}
-              height={500}
-              className="h-full w-full rounded-xl object-cover shadow-lg shadow-black"
-            />
-          </div>
-        </div>
-        <div className="relative aspect-w-1 aspect-h-1">
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=436&q=80"
-              alt="dog-husky"
-              width={500}
-              height={200}
-              className="h-full w-full object-cover rounded-xl shadow-lg shadow-black"
-            />
-          </div>
-        </div>
-        <div className=" relative aspect-w-1 aspect-h-1">
-          <Image
-            src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=929&q=80"
-            alt="cat-photo"
-            width={500}
-            height={500}
-            className="h-full  w-full rounded-xl shadow-lg shadow-black"
-          />
-        </div>
-      </div> */}
       <section className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11 mt-10 mb-20">
         <div className="">
           <div className="mt-10 relative rounded-md overflow-hidden hover:scale-110 duration-500 shadow-2xl shadow-black">
@@ -103,14 +70,16 @@ export default function MiddleNav() {
               <div className="absolute bottom-14 mb-4 flex w-full justify-center space-x-4">
                 <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
                   <button className="font-bold text-white text-2xl">
-                    <Link href="/">Find Pet List</Link>
+                    <Link href="/private/get-find-pet-list">Find Pet List</Link>
                   </button>
                 </div>
               </div>
               <div className="absolute top-14 mb-4 flex w-full justify-center space-x-4">
                 <div className="bg-red-600 hover:bg-red-800 p-2 rounded-xl opacity-90 shadow-black shadow-md">
                   <button className="font-bold text-white text-2xl">
-                    <Link href="/">Found Pet List</Link>
+                    <Link href="/private/get-found-pet-list">
+                      Found Pet List
+                    </Link>
                   </button>
                 </div>
               </div>

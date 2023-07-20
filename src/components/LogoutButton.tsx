@@ -6,8 +6,13 @@ export default function LogoutButton() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    router.push("/");
-    router.reload();
+    if (router.pathname === "/") {
+      // If on the homepage, reload the page
+      router.reload();
+    } else {
+      // If not on the homepage, navigate to the homepage
+      router.push("/");
+    }
   };
 
   return (
