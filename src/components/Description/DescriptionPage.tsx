@@ -84,7 +84,7 @@ export default function DescriptionComponent() {
   console.log(data);
   return (
     <>
-      <div className="container my-24 mx-auto md:px-6">
+      <div className="container py-32 mx-auto md:px-6">
         <>
           <h1 className="mb-6 text-3xl font-bold text-center">{data.title}</h1>
           <section className="mb-32">
