@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import ListSkeleton from "./ListSkeleton";
 
 interface FoundPetData {
   id: string;
@@ -17,6 +18,7 @@ interface FoundPetData {
 
 export default function FoundPetList() {
   const [data, setData] = useState<FoundPetData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   const fetchData = async () => {
@@ -25,6 +27,7 @@ export default function FoundPetList() {
         "https://wheremypets-backend-production.up.railway.app/found"
       );
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -45,38 +48,42 @@ export default function FoundPetList() {
       <h1>Found Pet</h1>
       <div className="p-5 sm:flex sm:justify-center">
         <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 gap-11 mt-10 mb-20 ">
-          {data.map((item) => (
-            <div
-              key={item.id}
-              className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
-            >
-              <img
-                className="w-full h-[40rem] md:h-[45rem] object-cover md:object-cover"
-                src={item.image}
-                alt="cat"
-              />
-              <div className="px-1 md:px-6 py-4">
-                <div className="font-bold text-xl mb-2 truncate">
-                  {item.title.toUpperCase()}
-                </div>
-                <p className="text-gray-700 text-base pb-6 truncate">
-                  {item.description}
-                </p>
-                <p>
-                  Status:{" "}
-                  <span className="font-bold">
-                    {item.isFound ? "DITEMUKAN" : "BELUM DITEMUKAN"}
-                  </span>
-                </p>
-                <div
-                  onClick={() => handleClick(item.id)}
-                  className="text-center cursor-pointer font-bold mt-5"
-                >
-                  Read More...
+          {loading ? (
+            <ListSkeleton />
+          ) : (
+            data.map((item) => (
+              <div
+                key={item.id}
+                className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
+              >
+                <img
+                  className="w-full h-[40rem] md:h-[45rem] object-cover md:object-cover"
+                  src={item.image}
+                  alt="cat"
+                />
+                <div className="px-1 md:px-6 py-4">
+                  <div className="font-bold text-xl mb-2 truncate">
+                    {item.title.toUpperCase()}
+                  </div>
+                  <p className="text-gray-700 text-base pb-6 truncate">
+                    {item.description}
+                  </p>
+                  <p>
+                    Status:{" "}
+                    <span className="font-bold">
+                      {item.isFound ? "DITEMUKAN" : "BELUM DITEMUKAN"}
+                    </span>
+                  </p>
+                  <div
+                    onClick={() => handleClick(item.id)}
+                    className="text-center cursor-pointer font-bold mt-5"
+                  >
+                    Read More...
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
