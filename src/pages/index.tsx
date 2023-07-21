@@ -7,7 +7,7 @@ import Carousel from "@/components/Homepage/Carousel";
 import MiddleNav from "@/components/Homepage/MiddleNav";
 import AboutComponent from "@/components/Homepage/AboutUs";
 import PreviewPostComponent from "@/components/Homepage/PreviewPost";
-import FooterComponent from "@/layout/Footer";
+import SpeedDialComponent from "@/components/Homepage/SpeedDial";
 
 // import Video from "@/components/Homepage/Video";
 
@@ -69,6 +69,7 @@ export default function Home({ initialData }: HomeProps) {
         <Video />
         <AboutComponent />
         <PreviewPostComponent />
+        <SpeedDialComponent />
       </main>
     </Layout>
   );
