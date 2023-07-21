@@ -7,10 +7,10 @@ export default function AboutComponent() {
         className="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-fixed object-cover -z-50 rounded-xl"
       />
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Where my Pets??
+        Where my Pets?
       </h1>
-      <p className="mb-6 text-justify tracking-tighter md:tracking-normal md:text-justify text-lg font-normal text-gray-900 lg:text-xl sm:px-10 xl:px-48 min-[360px]:px-5">
-        At Where My Pets??, we understand the heartache and anxiety that comes
+      <p className="mb-6 text-lg font-normal text-gray-900 lg:text-xl sm:px-10 xl:px-48 min-[360px]:px-5">
+        At Where My Pets?, we understand the heartache and anxiety that comes
         with losing a beloved furry companion. Our brand is dedicated to being a
         guiding light in those uncertain times, offering a reliable and
         compassionate platform for lost and found pets. Losing a pet can be a
