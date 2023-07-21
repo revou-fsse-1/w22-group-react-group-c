@@ -91,7 +91,7 @@ export default function FoundPetList() {
             filteredData.map((item) => (
               <div
                 key={item.id}
-                className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
+                className="mt-20 text-center sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
               >
                 <img
                   className="w-full h-[40rem] md:h-[45rem] object-cover md:object-cover"
