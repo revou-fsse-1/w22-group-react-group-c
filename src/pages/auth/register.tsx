@@ -1,10 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Spinner from "@/components/Spinner";
 
 interface FormProps {
   name: string;
@@ -13,6 +14,7 @@ interface FormProps {
 }
 
 export default function Register() {
+  const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
 
   const schema = yup
@@ -33,6 +35,8 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
+    setSubmitLoading(true);
+
     try {
       await axios.post(
         "https://wheremypets-backend-production.up.railway.app/auth/register/user",
@@ -42,10 +46,12 @@ export default function Register() {
           password: data.password,
         }
       );
-      console.log(data);
+      // console.log(data);
+      setSubmitLoading(false);
       router.push("/auth/login");
     } catch (error) {
       alert("Duplicate email");
+      setSubmitLoading(false);
     }
   };
 
@@ -161,7 +167,11 @@ export default function Register() {
                   className="rounded-lg z-30 bg-[#54be0d] hover:bg-[#4ba212] px-16 sm:px-32 md:px-32 py-4 font-bold text-lg text-white shadow-black shadow-sm"
                   type="submit"
                 >
-                  <span className="drop-shadow-lg">Register</span>
+                  {submitLoading ? (
+                    <Spinner />
+                  ) : (
+                    <span className="drop-shadow-lg">Register</span>
+                  )}
                 </button>
               </div>
             </form>
