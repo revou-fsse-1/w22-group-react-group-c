@@ -10,7 +10,7 @@ export default function LoginNavbar() {
 
   return (
     <div>
-      <nav className="w-full fixed z-50 drop-shadow-xl shadow-md shadow-[#1c1c1c] bg-[#FFD6A5]">
+      <nav className="w-full fixed z-[99999] drop-shadow-xl shadow-md shadow-[#1c1c1c] bg-[#FFD6A5]">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -75,6 +75,9 @@ export default function LoginNavbar() {
                 </li>
                 <li className="py-2 px-2 hover:bg-[#CBFFA9] hover:shadow hover:text-slate-950 hover:ring-2 rounded-xl ring-black text-gray-700  transition ease-in-out hover:-translate-y-0 hover:scale-105 delay-150 font-medium">
                   <Link href="/private/get-find-pet-list">Find Pet List</Link>
+                </li>
+                <li className="py-2 px-2 hover:bg-[#CBFFA9] hover:shadow hover:text-slate-950 hover:ring-2 rounded-xl ring-black text-gray-700  transition ease-in-out hover:-translate-y-0 hover:scale-105 delay-150 font-medium">
+                  <Link href="/private/map">Track Your Pets</Link>
                 </li>
 
                 <div className="flex items-center">
