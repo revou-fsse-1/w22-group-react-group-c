@@ -96,11 +96,13 @@ export default function DescriptionComponent() {
             {data.title}
           </h1>
           <section className="mb-32">
-            <img
-              src={data.image}
-              className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20"
-              alt="image"
-            />
+            <div className="flex justify-center items-center">
+              <img
+                src={data.image}
+                className="mb-6 w-[35rem] rounded-lg shadow-lg dark:shadow-black/20"
+                alt="image"
+              />
+            </div>
 
             <dl className="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 mb-10">
               <div className="flex flex-col pb-3">
