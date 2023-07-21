@@ -6,6 +6,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Spinner from "@/components/Spinner";
+import BeatLoader from "react-spinners/BeatLoader";
 
 interface FormProps {
   name: string;
@@ -168,7 +169,7 @@ export default function Register() {
                   type="submit"
                 >
                   {submitLoading ? (
-                    <Spinner />
+                    <BeatLoader size={5} color="#d8dedd" />
                   ) : (
                     <span className="drop-shadow-lg">Register</span>
                   )}

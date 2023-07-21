@@ -9,6 +9,8 @@ import jwt_decode from "jwt-decode";
 import ImageKit from "imagekit";
 import { ReadStream } from "fs";
 import "dotenv/config";
+import Spinner from "../Spinner";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 interface FormProps {
   title: string;
@@ -23,6 +25,7 @@ interface FormProps {
 
 export default function FormFindPet() {
   const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
   const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
   const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
@@ -63,6 +66,7 @@ export default function FormFindPet() {
 
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
+    setSubmitLoading(true);
     try {
       const token = window.localStorage.getItem("token");
       const decodedToken: { userId: string } = jwt_decode(token as string);
@@ -100,9 +104,11 @@ export default function FormFindPet() {
       // console.log(data);
       // console.log(decodedToken);
       // console.log(imageUrl);
+      setSubmitLoading(false);
       router.push("/");
     } catch (error) {
       console.log(error);
+      setSubmitLoading(false);
     }
   };
   return (
@@ -380,10 +386,14 @@ export default function FormFindPet() {
 
             <div className="text-center mt-5">
               <button
-                className="rounded-lg bg-blue-600 hover:bg-blue-500 px-6 md:px-10 py-4 font-bold text-lg text-white"
+                className="rounded-lg bg-[#54be0d] hover:bg-[#4ba212] px-6 md:px-10 py-4 font-bold text-lg text-white"
                 type="submit"
               >
-                Submit Form
+                {submitLoading ? (
+                  <ScaleLoader color="#d3dddb" height={13} width={4} />
+                ) : (
+                  <span className="drop-shadow-lg">Submit Form</span>
+                )}
               </button>
             </div>
           </form>

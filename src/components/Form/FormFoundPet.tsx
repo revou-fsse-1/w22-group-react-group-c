@@ -10,6 +10,7 @@ import ImageKit from "imagekit";
 import { ReadStream } from "fs";
 import "dotenv/config";
 import Spinner from "../Spinner";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 interface FormProps {
   title: string;
@@ -385,11 +386,11 @@ export default function FormFoundPet() {
 
             <div className="text-center mt-5">
               <button
-                className="rounded-lg bg-blue-600 hover:bg-blue-500 px-6 md:px-10 py-4 font-bold text-lg text-white"
+                className="rounded-lg bg-[#54be0d] hover:bg-[#4ba212] px-6 md:px-10 py-4 font-bold text-lg text-white"
                 type="submit"
               >
                 {submitLoading ? (
-                  <Spinner />
+                  <ScaleLoader color="#d3dddb" height={13} width={4} />
                 ) : (
                   <span className="drop-shadow-lg">Submit Form</span>
                 )}
