@@ -1,7 +1,13 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Button } from "@material-tailwind/react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 import {
   ArrowPathIcon,
   TrashIcon,
@@ -23,6 +29,8 @@ interface PetData {
 
 export default function DescriptionComponent() {
   const [data, setData] = useState<PetData[] | any>([]);
+  const [open, setOpen] = useState(false);
+
   const router = useRouter();
   const { id, type } = router.query;
 
@@ -47,6 +55,10 @@ export default function DescriptionComponent() {
     router.push(`/private/edit-form-${type}-pet?id=${id}`);
   };
 
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   const handleDelete = async (id: string | string[] | undefined) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -54,7 +66,6 @@ export default function DescriptionComponent() {
         `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("data sucessfully deleted");
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -96,11 +107,13 @@ export default function DescriptionComponent() {
             {data.title}
           </h1>
           <section className="mb-32">
-            <img
-              src={data.image}
-              className="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20"
-              alt="image"
-            />
+            <div className="flex justify-center items-center">
+              <img
+                src={data.image}
+                className="mb-6 w-[35rem] rounded-lg shadow-lg dark:shadow-black/20"
+                alt="image"
+              />
+            </div>
 
             <dl className="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700 mb-10">
               <div className="flex flex-col pb-3">
@@ -176,14 +189,46 @@ export default function DescriptionComponent() {
               </Button>
 
               <Button
-                onClick={() => handleDelete(id)}
+                className="flex items-center gap-3"
+                onClick={handleOpen}
                 variant="gradient"
                 color="red"
-                className="flex items-center gap-3"
               >
                 <TrashIcon strokeWidth={2} className="h-5 w-5" />
                 Delete
               </Button>
+              <Dialog
+                open={open}
+                handler={handleOpen}
+                animate={{
+                  mount: { scale: 1, y: 0 },
+                  unmount: { scale: 0.9, y: -100 },
+                }}
+              >
+                <DialogHeader>
+                  <span className="font-bold text-2xl">Are you sure?</span>
+                </DialogHeader>
+                <DialogBody divider>
+                  Dengan menekan tombol confirm, anda akan mendelete post ini.
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button
+                    variant="gradient"
+                    color="green"
+                    onClick={() => handleDelete(id)}
+                  >
+                    <span>Confirm</span>
+                  </Button>
+                </DialogFooter>
+              </Dialog>
 
               {/* <Button variant="text" className="flex items-center gap-2">
                 Read More{" "}
