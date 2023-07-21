@@ -49,7 +49,7 @@ export default function Login() {
   };
   return (
     <div>
-      <div className="p-6 md:p-32">
+      <div className="p-6 py-28 md:p-32">
         <div className="flex w-full md:w-[500px] flex-col space-y-5 rounded-lg border py-16 px-5 shadow-xl mx-auto">
           <div className="flex">
             {/* <Link href="/"> */}
