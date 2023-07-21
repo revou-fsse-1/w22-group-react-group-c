@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { icon } from "leaflet";
+import { Input } from "@material-tailwind/react";
 
 // Define a custom type for the location data
 type PetLocation = {
@@ -56,12 +57,20 @@ const Map: React.FC = () => {
 
   return (
     <div className="mt-14 mb-14 p-14">
-      <input
+      {/* <input
         type="text"
         placeholder="Search pet"
         value={searchedPet}
         onChange={handleSearchInputChange}
-      />
+        className="border border-black"
+      /> */}
+      <div className="w-28 mb-2">
+        <Input
+          label="Find your pets"
+          value={searchedPet}
+          onChange={handleSearchInputChange}
+        />
+      </div>
       <MapContainer
         center={indonesiaCenter}
         zoom={5}
@@ -86,7 +95,7 @@ const Map: React.FC = () => {
         {/* Show the pet's location on the map when there's a search term */}
         {searchedPet && selectedPetLocation && (
           <Marker position={selectedPetLocation} icon={ICON}>
-            <Popup>You searched for a pet here!</Popup>
+            <Popup>You searched for a pet named {searchedPet} here!</Popup>
           </Marker>
         )}
         {/* Show all pets' locations on the map */}
