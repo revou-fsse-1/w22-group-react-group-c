@@ -64,7 +64,7 @@ export default function PreviewPostComponent() {
     router.push(`/private/pet-description?id=${id}&type=${type}`);
   };
 
-  // console.log(secondItem);
+  console.log(secondItem);
 
   return (
     <div>
