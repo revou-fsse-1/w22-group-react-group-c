@@ -20,6 +20,7 @@ interface FindPetData {
 export default function FindPetList() {
   const [data, setData] = useState<FindPetData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [filterText, setFilterText] = useState<string>("");
   const router = useRouter();
 
   const fetchData = async () => {
@@ -40,19 +41,56 @@ export default function FindPetList() {
 
   console.log(data);
 
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(event.target.value);
+  };
+
   const handleClick = (id: string) => {
     router.push(`/private/pet-description?id=${id}&type=find`);
   };
 
+  const filteredData = data.filter((item) => {
+    const titleMatches = item.title
+      .toUpperCase()
+      .includes(filterText.toUpperCase());
+
+    if (filterText.toUpperCase() === "DITEMUKAN") {
+      return item.isFound;
+    }
+
+    if (filterText.toUpperCase() === "BELUM DITEMUKAN") {
+      return !item.isFound;
+    }
+
+    return titleMatches;
+  });
+
   return (
     <div>
-      <h1>Find Pet</h1>
+      <h1 className="pt-28 text-center font-bold text-5xl">Find Pet List</h1>
+      <div className="relative flex justify-center items-center mt-4">
+        <input
+          type="text"
+          placeholder=" 🔍 Filter by TITLE or STATUS "
+          onChange={handleFilterChange}
+          value={filterText}
+          className="w-72 shadow-slate-500 shadow-md rounded-md px-4 py-2   border border-gray-300 focus:outline-none focus:ring focus:border-green-200"
+        />
+        {filterText && (
+          <button
+            onClick={() => setFilterText("")}
+            className="relative text-white shadow-slate-500 shadow-md font-bold  bg-red-600 hover:bg-red-800 p-[11.5px] rounded-r-lg focus:outline-none"
+          >
+            Clear
+          </button>
+        )}
+      </div>
       <div className="p-5 sm:flex sm:justify-center">
         <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 gap-11 mt-10 mb-20 ">
           {loading ? (
             <ListSkeleton />
-          ) : (
-            data.map((item) => (
+          ) : filteredData.length > 0 ? (
+            filteredData.map((item) => (
               <div
                 key={item.id}
                 className="mt-20 sm:max-w-sm md:max-w-lg rounded overflow-hidden shadow-lg"
@@ -84,6 +122,16 @@ export default function FindPetList() {
                 </div>
               </div>
             ))
+          ) : (
+            <>
+              <div className="text-center sm:absolute sm:left-[12rem] md:left-[31rem] text-gray-600">
+                <h2 className="text-2xl font-bold">Not Found</h2>
+                <p>No matching pets found. Please try a different search.</p>
+              </div>
+              <br className="hidden sm:flex" />
+              <br className="hidden sm:flex" />
+              <br className="hidden sm:flex" />
+            </>
           )}
         </div>
       </div>

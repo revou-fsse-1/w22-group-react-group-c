@@ -65,11 +65,11 @@ export default function FoundPetList() {
 
   return (
     <div>
-      <h1>Found Pet</h1>
-      <div className="relative flex justify-center items-center mt-28 ">
+      <h1 className="pt-28 text-center font-bold text-5xl">Found Pet List</h1>
+      <div className="relative flex justify-center items-center mt-4">
         <input
           type="text"
-          placeholder="Filter by TITLE or STATUS"
+          placeholder=" 🔍 Filter by TITLE or STATUS "
           onChange={handleFilterChange}
           value={filterText}
           className="w-72 shadow-slate-500 shadow-md rounded-md px-4 py-2   border border-gray-300 focus:outline-none focus:ring focus:border-green-200"
