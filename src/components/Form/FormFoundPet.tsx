@@ -9,6 +9,7 @@ import jwt_decode from "jwt-decode";
 import ImageKit from "imagekit";
 import { ReadStream } from "fs";
 import "dotenv/config";
+import Spinner from "../Spinner";
 
 interface FormProps {
   title: string;
@@ -23,6 +24,7 @@ interface FormProps {
 
 export default function FormFoundPet() {
   const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
   const publicKeyEnv = process.env.NEXT_PUBLIC_KEY as string;
   const privateKeyEnv = process.env.NEXT_PUBLIC_PRIVATE_KEY as string;
@@ -63,6 +65,7 @@ export default function FormFoundPet() {
 
   const onSubmit: SubmitHandler<FormProps> = async (data, event: any) => {
     event.preventDefault();
+    setSubmitLoading(true);
     try {
       const token = window.localStorage.getItem("token");
       const decodedToken: { userId: string } = jwt_decode(token as string);
@@ -100,9 +103,11 @@ export default function FormFoundPet() {
       // console.log(data);
       // console.log(decodedToken);
       // console.log(imageUrl);
+      setSubmitLoading(false);
       router.push("/");
     } catch (error) {
       console.log(error);
+      setSubmitLoading(false);
     }
   };
   return (
@@ -340,7 +345,7 @@ export default function FormFoundPet() {
                   placeholder=" "
                 />
                 <label
-                  htmlFor="species"
+                  htmlFor="contact"
                   className="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"
                 >
                   {" "}
@@ -383,7 +388,11 @@ export default function FormFoundPet() {
                 className="rounded-lg bg-blue-600 hover:bg-blue-500 px-6 md:px-10 py-4 font-bold text-lg text-white"
                 type="submit"
               >
-                Submit Form
+                {submitLoading ? (
+                  <Spinner />
+                ) : (
+                  <span className="drop-shadow-lg">Submit Form</span>
+                )}
               </button>
             </div>
           </form>
