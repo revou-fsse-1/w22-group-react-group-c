@@ -14,6 +14,7 @@ import {
   DocumentChartBarIcon,
 } from "@heroicons/react/24/outline";
 import DescriptionPageSkeleton from "./DescriptionPageSkeleton";
+import jwt_decode from "jwt-decode";
 
 interface PetData {
   id: string;
@@ -26,15 +27,20 @@ interface PetData {
   contact: string;
   image: string;
   isFound: boolean;
+  userId: string;
 }
 
 export default function DescriptionComponent() {
   const [data, setData] = useState<PetData[] | any>([]);
+  const [dataUserId, setDataUserId] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [toogleEditDelete, setToogleEditDelete] = useState(false);
 
   const router = useRouter();
   const { id, type } = router.query;
+
+  // check if current userId are the same as current post userId
 
   const handleChangeStatus = async () => {
     try {
@@ -82,11 +88,23 @@ export default function DescriptionComponent() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setData(response.data);
+      setDataUserId(response.data.userId);
       window.localStorage.setItem("latestDataId", id);
       setLoading(false);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const checkCurrentUserId = async () => {
+    const token = window.localStorage.getItem("token");
+    const decodedToken: { userId: string } = jwt_decode(token as string);
+    const currentUserId = decodedToken.userId;
+    if (currentUserId === dataUserId) {
+      setToogleEditDelete(true);
+    }
+    // console.log(currentUserId);
+    // console.log(dataUserId);
   };
 
   useEffect(() => {
@@ -98,8 +116,9 @@ export default function DescriptionComponent() {
       // Use the ID from local storage if it exists, or use the ID from the query
       const fetchId = id || storedId;
       fetchData(fetchId as string);
+      checkCurrentUserId();
     }
-  }, [id]);
+  }, [id, dataUserId]);
 
   // console.log(data);
   return (
@@ -173,83 +192,95 @@ export default function DescriptionComponent() {
                   </dd>
                 </div>
               </dl>
-
-              <div className="flex items-center gap-4">
-                <Button
-                  onClick={handleChangeStatus}
-                  variant="gradient"
-                  color="green"
-                  className="hidden md:flex items-center gap-3"
-                >
-                  <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
-                  Change Status
-                </Button>
-                <Button
-                  onClick={() => handleEdit(type)}
-                  variant="gradient"
-                  color="green"
-                  className="flex items-center gap-3"
-                >
-                  <DocumentChartBarIcon strokeWidth={2} className="h-5 w-5" />
-                  Edit
-                </Button>
-
-                <Button
-                  className="flex items-center gap-3"
-                  onClick={handleOpen}
-                  variant="gradient"
-                  color="red"
-                >
-                  <TrashIcon strokeWidth={2} className="h-5 w-5" />
-                  Delete
-                </Button>
-                <Dialog
-                  open={open}
-                  handler={handleOpen}
-                  animate={{
-                    mount: { scale: 1, y: 0 },
-                    unmount: { scale: 0.9, y: -100 },
-                  }}
-                >
-                  <DialogHeader>
-                    <span className="font-bold text-2xl">Are you sure?</span>
-                  </DialogHeader>
-                  <DialogBody divider>
-                    Dengan menekan tombol confirm, anda akan mendelete post ini.
-                  </DialogBody>
-                  <DialogFooter>
+              {toogleEditDelete ? (
+                <>
+                  {" "}
+                  <div className="flex items-center gap-4">
                     <Button
-                      variant="text"
-                      color="red"
-                      onClick={handleOpen}
-                      className="mr-1"
-                    >
-                      <span>Cancel</span>
-                    </Button>
-                    <Button
+                      onClick={handleChangeStatus}
                       variant="gradient"
                       color="green"
-                      onClick={() => handleDelete(id)}
+                      className="hidden md:flex items-center gap-3"
                     >
-                      <span>Confirm</span>
+                      <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
+                      Change Status
                     </Button>
-                  </DialogFooter>
-                </Dialog>
+                    <Button
+                      onClick={() => handleEdit(type)}
+                      variant="gradient"
+                      color="green"
+                      className="flex items-center gap-3"
+                    >
+                      <DocumentChartBarIcon
+                        strokeWidth={2}
+                        className="h-5 w-5"
+                      />
+                      Edit
+                    </Button>
 
-                {/* <Button variant="text" className="flex items-center gap-2">
+                    <Button
+                      className="flex items-center gap-3"
+                      onClick={handleOpen}
+                      variant="gradient"
+                      color="red"
+                    >
+                      <TrashIcon strokeWidth={2} className="h-5 w-5" />
+                      Delete
+                    </Button>
+                    <Dialog
+                      open={open}
+                      handler={handleOpen}
+                      animate={{
+                        mount: { scale: 1, y: 0 },
+                        unmount: { scale: 0.9, y: -100 },
+                      }}
+                    >
+                      <DialogHeader>
+                        <span className="font-bold text-2xl">
+                          Are you sure?
+                        </span>
+                      </DialogHeader>
+                      <DialogBody divider>
+                        Dengan menekan tombol confirm, anda akan mendelete post
+                        ini.
+                      </DialogBody>
+                      <DialogFooter>
+                        <Button
+                          variant="text"
+                          color="red"
+                          onClick={handleOpen}
+                          className="mr-1"
+                        >
+                          <span>Cancel</span>
+                        </Button>
+                        <Button
+                          variant="gradient"
+                          color="green"
+                          onClick={() => handleDelete(id)}
+                        >
+                          <span>Confirm</span>
+                        </Button>
+                      </DialogFooter>
+                    </Dialog>
+
+                    {/* <Button variant="text" className="flex items-center gap-2">
                 Read More{" "}
                 <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
               </Button> */}
-              </div>
-              <Button
-                onClick={handleChangeStatus}
-                variant="gradient"
-                color="green"
-                className="flex md:hidden mt-2 items-center gap-3"
-              >
-                <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
-                Change Status
-              </Button>
+                  </div>
+                  <Button
+                    onClick={handleChangeStatus}
+                    variant="gradient"
+                    color="green"
+                    className="flex md:hidden mt-2 items-center gap-3"
+                  >
+                    <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
+                    Change Status
+                  </Button>{" "}
+                </>
+              ) : (
+                <div></div>
+              )}
 
               <h1 className="mb-6 text-3xl font-bold mt-6 text-center">
                 DESKRIPSI
