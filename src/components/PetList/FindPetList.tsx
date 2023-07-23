@@ -39,7 +39,7 @@ export default function FindPetList() {
     fetchData();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(event.target.value);

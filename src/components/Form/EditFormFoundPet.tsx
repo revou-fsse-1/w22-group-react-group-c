@@ -114,8 +114,8 @@ export default function EditFoundPetForm() {
           },
         }
       );
-      console.log(updatedData);
-      console.log(response.data);
+      // console.log(updatedData);
+      // console.log(response.data);
       // console.log(imageUrl);
       setSubmitLoading(false);
       router.push(`/private/pet-description?id=${id}&type=found`);
