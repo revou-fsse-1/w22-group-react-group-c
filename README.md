@@ -6,7 +6,7 @@ Projek web ini didasari oleh keresahan user ketika hewan pelharaannya hilang. Ki
 
 Link Figma : https://www.figma.com/file/DD0gPWylrWM4ZzTst6i7e0/Project-Akhir?type=design&node-id=17%3A209&mode=design&t=BJPY2CG2RTIojF05-1
 
-Link backend: https://wheremypets-backend-production.up.railway.app/docs
+Link backend: https://wheremypets.adaptable.app/docs
 
 Link preview website : https://w22-group-react-group-c.vercel.app/
 

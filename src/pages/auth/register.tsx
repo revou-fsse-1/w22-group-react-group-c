@@ -40,7 +40,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "https://wheremypets-backend-production.up.railway.app/auth/register/user",
+        "https://wheremypets.adaptable.app/auth/register/user",
         {
           name: data.name,
           email: data.email,

@@ -83,7 +83,7 @@ export default function FormFindPet() {
       const imageUrl = response.url; // Get the uploaded image URL
 
       await axios.post(
-        "https://wheremypets-backend-production.up.railway.app/find",
+        "https://wheremypets.adaptable.app/find",
         {
           title: data.title,
           description: data.description,

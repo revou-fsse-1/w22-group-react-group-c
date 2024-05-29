@@ -48,7 +48,7 @@ export default function DescriptionComponent() {
       const updatedData = { ...data, isFound: !data.isFound }; // Toggle the value of `isFound`
       await axios.patch(
         // Replace "put" with "patch" if you are using a PATCH request
-        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
+        `https://wheremypets.adaptable.app/${type}/${id}`,
         updatedData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -71,7 +71,7 @@ export default function DescriptionComponent() {
     try {
       const token = window.localStorage.getItem("token");
       await axios.delete(
-        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
+        `https://wheremypets.adaptable.app/${type}/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       router.push("/");
@@ -84,7 +84,7 @@ export default function DescriptionComponent() {
     try {
       const token = window.localStorage.getItem("token");
       const response = await axios.get(
-        `https://wheremypets-backend-production.up.railway.app/${type}/${id}`,
+        `https://wheremypets.adaptable.app/${type}/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setData(response.data);

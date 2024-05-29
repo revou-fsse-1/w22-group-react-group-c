@@ -24,7 +24,7 @@ export default function PreviewPostComponent() {
   const fetchDataFindPost = async () => {
     try {
       const response = await axios.get(
-        "https://wheremypets-backend-production.up.railway.app/find"
+        "https://wheremypets.adaptable.app/find"
       );
       setDataFindPost(response.data);
     } catch (error) {
@@ -35,7 +35,7 @@ export default function PreviewPostComponent() {
   const fetchDataFoundPost = async () => {
     try {
       const response = await axios.get(
-        "https://wheremypets-backend-production.up.railway.app/found"
+        "https://wheremypets.adaptable.app/found"
       );
       setDataFoundPost(response.data);
     } catch (error) {

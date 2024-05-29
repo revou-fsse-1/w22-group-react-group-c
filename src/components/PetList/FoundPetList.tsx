@@ -25,7 +25,7 @@ export default function FoundPetList() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://wheremypets-backend-production.up.railway.app/found"
+        "https://wheremypets.adaptable.app/found"
       );
       setData(response.data);
       setLoading(false);
